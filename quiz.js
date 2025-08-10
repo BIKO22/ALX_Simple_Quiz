@@ -1,25 +1,47 @@
-function checkAnswer() {
-    // Step 1: Set the correct answer
-    let correctAnswer = "4";
-
-    // Step 2: Get the user's selected answer
-    let selectedOption = document.querySelector('input[name="quiz"]:checked');
-
-    if (!selectedOption) {
-        document.getElementById("feedback").textContent = "Please select an answer first!";
-        return;
-    }
-
-    let userAnswer = selectedOption.value;
-
-    // Step 3: Compare and give feedback
-    if (userAnswer === correctAnswer) {
-        document.getElementById("feedback").textContent = "Correct! Well done.";
-    } else {
-        document.getElementById("feedback").textContent = "That's incorrect. Try again!";
-    }
+// Arithmetic functions
+function add(number1, number2) {
+    return number1 + number2;
 }
 
-// Step 4: Add event listener to button
-document.getElementById("submit-answer").addEventListener("click", checkAnswer);
+function subtract(number1, number2) {
+    return number1 - number2;
+}
 
+function multiply(number1, number2) {
+    return number1 * number2;
+}
+
+function divide(number1, number2) {
+    if (number2 === 0) {
+        return "Error: Division by zero";
+    }
+    return number1 / number2;
+}
+
+// Helper to get input values
+function getInputValues() {
+    const number1 = parseFloat(document.getElementById('number1').value) || 0;
+    const number2 = parseFloat(document.getElementById('number2').value) || 0;
+    return { number1, number2 };
+}
+
+// Event listeners
+document.getElementById('add').addEventListener('click', function () {
+    const { number1, number2 } = getInputValues();
+    document.getElementById('calculation-result').textContent = add(number1, number2);
+});
+
+document.getElementById('subtract').addEventListener('click', function () {
+    const { number1, number2 } = getInputValues();
+    document.getElementById('calculation-result').textContent = subtract(number1, number2);
+});
+
+document.getElementById('multiply').addEventListener('click', function () {
+    const { number1, number2 } = getInputValues();
+    document.getElementById('calculation-result').textContent = multiply(number1, number2);
+});
+
+document.getElementById('divide').addEventListener('click', function () {
+    const { number1, number2 } = getInputValues();
+    document.getElementById('calculation-result').textContent = divide(number1, number2);
+});
